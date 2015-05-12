@@ -1,0 +1,13 @@
+Core:
+    - Actualizar skels
+    - sql > get by date/url
+    - Probar Cookies
+    - readme
+    - Comparison: Tesseract-ocr
+    - Save PDiffs in DB
+
+Reporting:
+    (everything!)
+
+GUI:
+    (everything!)

@@ -1,0 +1,33 @@
+27-02 18:01 | CustomUtils     | [DEBUG   ] | Loading file: input_capture.json
+27-02 18:01 | CustomUtils     | [DEBUG   ] | Returning: {u'cookies': [], u'browsers': {u'chrome': False, u'iexplore': False, u'firefox': False, u'phantomjs': True}, u'screenshots': {u'path': u'/tmp/testing/$random', u'store_in_db': True, u'filename': u'$hash.png'}, u'urls': [u'http://www.viajeros.com'], u'window_sizes': [[1152, 768]]}
+27-02 18:01 | CustomUtils     | [DEBUG   ] | Loading file: config.json
+27-02 18:01 | CustomUtils     | [DEBUG   ] | Returning: {u'database_path': u'./obsidian-db.sqlite', u'check_database_schema': False, u'timeouts': 30, u'smtp': {u'tls': False, u'ehlo': False, u'host': u'mail.despegar.com', u'user': u'', u'pass': u'', u'port': None}, u'------': u'---------', u'debug': True, u'binaries': {u'chromedriver': u'/home/nico/bin/chromedriver', u'iexplore': False, u'firefox': u'/usr/bin/firefox', u'phantomjs': False}}
+27-02 18:01 | brDispatcher    | [DEBUG   ] | Binaries used: 
+27-02 18:01 | brDispatcher    | [DEBUG   ] | {u'chromedriver': u'/home/nico/bin/chromedriver', u'iexplore': False, u'firefox': u'/usr/bin/firefox', u'phantomjs': False}
+27-02 18:01 | RunCapture      | [DEBUG   ] | Spawned browser: phantomjs
+27-02 18:01 | RunCapture      | [INFO    ] | Capturing http://www.viajeros.com
+27-02 18:02 | Screenshotter   | [DEBUG   ] | Window size: 1152x768
+27-02 18:02 | ScreenUtils     | [DEBUG   ] | Created folder: /tmp/testing/44g3TRPiOfDsiyQm/
+27-02 18:02 | ScreenUtils     | [DEBUG   ] | No previous file found. No overwrite risk.
+27-02 18:02 | ScreenUtils     | [DEBUG   ] | Duplicates register:
+27-02 18:02 | ScreenUtils     | [DEBUG   ] | {}
+27-02 18:02 | ScreenUtils     | [DEBUG   ] | Saving screenshot: /tmp/testing/44g3TRPiOfDsiyQm/$hash.png
+27-02 18:02 | Screenshotter   | [DEBUG   ] | Taken screenshot with path: /tmp/testing/44g3TRPiOfDsiyQm/0021211595d256453ce4e39d45940590.png
+27-02 18:02 | RunCapture      | [DEBUG   ] | Screenshots so far:
+27-02 18:02 | RunCapture      | [DEBUG   ] | /tmp/testing/44g3TRPiOfDsiyQm/0021211595d256453ce4e39d45940590.png
+27-02 18:02 | RunCapture      | [DEBUG   ] | All screenshots: [u'/tmp/testing/44g3TRPiOfDsiyQm/0021211595d256453ce4e39d45940590.png']
+27-02 18:02 | RunCapture      | [INFO    ] | DONE! The test took: 53 seconds.
+27-02 18:02 | RunCapture      | [DEBUG   ] | Final results: {'test_end': '2015-02-27 18:02:44', 'test_start': '2015-02-27 18:01:50', 'screenshots': [<src.screenshots.Screenshot.Screenshot object at 0x7fdf845a4610>]}
+27-02 18:02 | RunCapture      | [DEBUG   ] | Each screenshot info:
+27-02 18:02 | RunCapture      | [DEBUG   ] | hashvalue: 0021211595d256453ce4e39d45940590 
+date_taken: 2015-02-27 18:02:07 
+url: http://www.viajeros.com/ 
+height: 768 
+width: 1152 
+images: [{u'width': 127, u'top': 0, u'height': 38, u'left': 0}, {u'width': 0, u'top': 0, u'height': 0, u'left': 0}, {u'width': 0, u'top': 0, u'height': 0, u'left': 0}, {u'width': 0, u'top': 0, u'height': 0, u'left': 0}, {u'width': 0, u'top': 0, u'height': 0, u'left': 0}, {u'width': 0, u'top': 0, u'height': 0, u'left': 0}, {u'width': 257, u'top': 0, u'height': 200, u'left': 0}, {u'width': 257, u'top': 0, u'height': 200, u'left': 0}, {u'width': 257, u'top': 0, u'height': 200, u'left': 0}, {u'width': 257, u'top': 0, u'height': 200, u'left': 0}, {u'width': 257, u'top': 0, u'height': 200, u'left': 0}, {u'width': 257, u'top': 0, u'height': 200, u'left': 0}, {u'width': 257, u'top': 0, u'height': 200, u'left': 0}, {u'width': 257, u'top': 0, u'height': 200, u'left': 0}, {u'width': 88, u'top': 0, u'height': 31, u'left': 0}] 
+path: /tmp/testing/44g3TRPiOfDsiyQm/0021211595d256453ce4e39d45940590.png 
+browser: phantomjs 
+
+27-02 18:02 | RunCapture      | [DEBUG   ] | All results:
+27-02 18:02 | RunCapture      | [DEBUG   ] | {'test_end': '2015-02-27 18:02:44', 'test_start': '2015-02-27 18:01:50', 'screenshots': [<src.screenshots.Screenshot.Screenshot object at 0x7fdf845a4610>]}
+27-02 18:02 | root            | [INFO    ] | Exiting!

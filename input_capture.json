@@ -1,0 +1,26 @@
+{
+    "screenshots": {
+        "path": "/tmp/testing/$random",
+        "filename": "$hash.png",
+        "store_in_db": true
+    },
+
+    "urls": [
+        "http://www.viajeros.com"
+    ],
+
+    "browsers": {
+        "firefox": false,
+        "chrome": false,
+        "iexplore": false,
+        "phantomjs": true
+    },
+
+    "cookies": [
+
+    ],
+
+    "window_sizes": [
+        [1152,768]
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "screenshots":{
+        "path": "/tmp/obsidian",
+        "filename": "$browser.png",
+        "store_in_db": false
+    },
+
+    "urls": [
+        "http://www.google.com/"
+    ],
+    
+    "browsers": {
+        "firefox": true,
+        "chrome": false,
+        "iexplore": false,
+        "phantomjs": true
+    },
+    
+    "cookies": [
+
+    ],
+
+    "window_sizes": [
+        [1152,768],
+        [480, 320],
+        "fullscreen"
+    ]
+}

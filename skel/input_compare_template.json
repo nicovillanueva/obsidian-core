@@ -1,0 +1,39 @@
+{
+    "path": "archive/$date/$url",
+    "filename": "$browser.png",
+    "store_in_db": true,
+    
+    "urls": [
+        "http://www.viajeros.com/",
+        "http://www.viajeros.com/destinos",
+        "http://www.viajeros.com/hoteles/hoteles.htm"
+    ],
+    "browsers": {
+        "firefox": true,
+        "chrome": false,
+        "iexplore": false
+    },
+    "window_sizes": [
+        [640,960],
+        "fullscreen"
+    ],
+    "mail_reports": {
+        "destinations": [
+            "your@mail.com"
+        ],
+        "elements": {
+            "screenshots": false,
+            "diff": true
+        }
+    }
+    "cookies": [
+        {
+            "name": "X-VJS-AllowedUser",
+            "value": "true",
+            "path": ".stage.viajeros.com",
+            "expiry":"",
+            "domain":"",
+            "secure":""
+        }
+    ]
+}

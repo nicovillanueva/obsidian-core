@@ -1,0 +1,12 @@
+<style>
+
+body { font-family:Arial,Helvetica,sans-serif; }
+p { line-height: 95% }
+span { line-height: 120% }
+
+#header { font-weight: bold; font-style: italic; font-size: 110% }
+
+.category { font-style: italic; }
+.detail { font-weight: bold; font-size: 105%}
+
+</style>

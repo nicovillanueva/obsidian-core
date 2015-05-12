@@ -1,0 +1,16 @@
+{
+	"archive_folder": "archives",
+	"database_filename": "obsidian-db.sqlite",
+	"binaries": {
+		"firefox": "/usr/bin/firefoxLatest",
+		"chromedriver": "/home/myuser/bin/chromedriver"
+	},
+	"smtp": {
+		"host": "mail.despegar.com",
+		"port": null,
+		"user": "",
+		"pass": "",
+		"tls": false,
+		"ehlo": false
+	}
+}

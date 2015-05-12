@@ -1,0 +1,22 @@
+{
+    "results": "/home/nico/Desktop/obs-screens/$date/$random.json",
+
+    "comparisons": [
+        ["/home/nico/Desktop/obs-screens/test-comp-firefox.png","/home/nico/Desktop/obs-screens/test-comp-chrome.png"],
+        ["/home/nico/Desktop/obs-screens/test-comp-firefox.png","/home/nico/Desktop/obs-screens/test-comp-phantomjs.png"]
+    ],
+
+    "actions": [
+        {
+            "name": "difference_percentage",
+            "parameters": { }
+        },
+        {
+            "name": "highlight_differences",
+            "parameters": {
+                "grayscale": true,
+                "save_as": "/home/nico/Desktop/obs-screens/$date.png"
+             }
+        }
+    ]
+}
