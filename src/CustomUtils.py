@@ -1,7 +1,7 @@
 __author__ = 'nico'
 import random, string, datetime, time, logging, json, sys, os
 
-logger = logging.getLogger("obs.Utils")
+logger = logging.getLogger("CustomUtils")
 
 
 def get_random_str(amount=16):

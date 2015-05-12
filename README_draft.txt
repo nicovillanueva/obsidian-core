@@ -8,14 +8,14 @@ variable parameters in "save_as":
 variable parameters in "results":
     $date, $random
 
-screen_size possible values:
+# screen_size possible values:
     "fullscreen"
     [640, 960]
     [any_valid_width, any_valid_height]
 
-To create templates for the input and config files, run 'obsidian.py --make-templates'
+# To create templates for the input and config files, run 'obsidian.py --make-templates'
 
-Database:
+# Database info:
     config.json => "database_filename" == sqlite database to use
     input.json => "store_in_db": true/false == store the session's screenshots in the db
     database schema:
@@ -27,6 +27,7 @@ Database:
         height of the screenshot
         relative path of the screenshot image file
 
-deps (maybe?):
-    simplecv (hay que bajar el .deb)
-    copiar las imagenes faltantes (Lena y el logo)
+# Installation/requirements:
+    python requirements in requirements.txt
+    (SimpleCV may need to be installed from .deb)
+    Tesseract-OCR (sudo apt-get install tesseract-ocr tesseract-ocr-spa)

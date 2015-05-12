@@ -1,4 +1,6 @@
 import logging
+from selenium.common.exceptions import TimeoutException
+
 
 class BrowserArray:
 
@@ -11,21 +13,38 @@ class BrowserArray:
         Propagate the get() method.
         Adds stage cookie if needed.
         """
+
+        failed_browsers = []
+
         for br in self.browsers:
-            br.get(url)
+            try:
+                br.get(url)
+            except TimeoutException:
+                self.logger.warning("Timed out when loading %s using %s" % (url, br.name))
+                failed_browsers.append(br.name)
+                continue
+
+        if cookie is None or len(cookie) < 1:
+            return failed_browsers
 
         baseurl = self._get_base_url(url)
         for br in self.browsers:
             for each in cookie:
                 if not self._check_for_cookie(each.get("name")):
-                    br.get(baseurl)
-                    self._add_cookie(each)
-                    br.get(url)
+                    try:
+                        br.get(baseurl)
+                        self._add_cookie(each)
+                        br.get(url)
+                    except TimeoutException:
+                        self.logger.warning("Timed out when loading %s using %s" % (url, br.name))
+                        failed_browsers.append(br.name)
+                        continue
                 else:
                     self.logger.debug("Not adding cookie: %s" % (each.get("name")))
 
                 self.logger.debug("Current cookies of %s:" % br.name)
                 self.logger.debug(br.execute_script("return document.cookie"))
+        return failed_browsers
 
     def set_window_size(self, window_width, window_height):
         for br in self.browsers:
@@ -37,7 +56,7 @@ class BrowserArray:
             br.set_window_position(0,0)
             br.maximize_window()
     
-    def save_screenshot(self, target_dir=None, target_file=None):
+    def save_screenshot(self, target_dir=None, target_file=None, ignored_browsers=None):
         """
         Propagates the save_screenshot() method to each browser.
         Can specify to which folder to save the screenshots.
@@ -46,7 +65,8 @@ class BrowserArray:
         from ..screenshots.Screenshotter import Screenshotter
         sshots = []
         for br in self.browsers:
-            sshots.append(Screenshotter.save_screenshot(br, target_dir, target_file))
+            if ignored_browsers is not None and br.name not in ignored_browsers:
+                sshots.append(Screenshotter.save_screenshot(br, target_dir, target_file))
         return sshots
 
     def get_browser(self, browsername):
@@ -54,7 +74,7 @@ class BrowserArray:
         Get a given browser from the browser array
         """
         for br in self.browsers:
-            if(browsername in str(type(br))):
+            if browsername in str(type(br)):
                 return br
 
     def quit(self):

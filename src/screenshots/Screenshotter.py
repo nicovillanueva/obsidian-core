@@ -4,10 +4,11 @@ from PIL import Image
 
 import ScreenshotterUtils as Utils
 
+
 class Screenshotter:
 
     def __init__(self):
-        self.logger = logging.getLogger('obs.Screenshotter')
+        self.logger = logging.getLogger('Screenshotter')
 
     # --------------------
 
@@ -19,7 +20,7 @@ class Screenshotter:
         Returns the screenshot entity.
         """
         scr = Screenshotter()
-        logger = logging.getLogger('obs.Screenshotter')
+        logger = scr.logger
 
         wid, hei = drv.get_window_size().values()
         logger.debug("Window size: " + str(wid) + "x" + str(hei))
@@ -42,6 +43,7 @@ class Screenshotter:
         s = Screenshot(sshot_path, drv.current_url,
                        datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
                        drv.name, wid, hei)
+        s.images = scr.find_all_images(drv)
 
         if "$hash" in s.path:
             # Hash value must be replaced after writing the file
@@ -76,21 +78,15 @@ class Screenshotter:
         self.logger.debug("Screensize: " + str(window_width) + "x" + str(window_height))
         self.logger.debug("Cropped to: " + str(window_width) + "x" + str(i_hei))
 
-    # --------------------
-
     def save_screenshot_ie(self, drv, path="", filename=""):
         imgpath = Utils.resolve_path(path, filename, drv)
         drv.save_screenshot(imgpath)
         return imgpath
 
-    # --------------------
-
     def save_screenshot_phantomjs(self, drv, path="", filename=""):
         imgpath = Utils.resolve_path(path, filename, drv)
         drv.save_screenshot(imgpath)
         return imgpath
-
-    # --------------------
 
     def save_screenshot_chrome(self, drv, path="", filename=""):
         from StringIO import StringIO
@@ -126,4 +122,26 @@ class Screenshotter:
         imgstitcher.build_final().save(imgpath)
         return imgpath
 
-    # ====================
+    def find_all_images(self, drv):
+        """
+        Gets all of the images' sizes from the page.
+        The sizes are saved to a dict, and all sizes are grouped up in a list which is returned
+        :param drv: Driver to get images from
+        :rtype : list
+        """
+        img_getter = """
+            var sizes = []
+            for(var i = 0; i < document.images.length; i++){
+                var t = document.images[i].clientTop
+                var l = document.images[i].clientLeft
+                var w = document.images[i].clientWidth
+                var h = document.images[i].clientHeight
+                sizes.push({top: t,
+                            left: l,
+                            width: w,
+                            height: h
+                            })
+            }
+            return sizes
+        """
+        return drv.execute_script(img_getter)

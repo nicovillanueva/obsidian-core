@@ -11,3 +11,38 @@ Reporting:
 
 GUI:
     (everything!)
+
+
+screenshots_elements (table)
+uid | position
+1   | {left, right, top, bottom}
+
+adding div to overlay stuffs
+
+console.log(document.images)
+for(var i = 0; i < document.images.length; i++){
+    console.log("Image #" + i);
+    var w = document.images[i].clientWidth
+    var h = document.images[i].clientHeight
+    var t = document.images[i].clientTop
+    var l = document.images[i].clientLeft
+    console.log("Width: " + w)
+    console.log("Height: " + h)
+    console.log("Top: " + t)
+    console.log("Left: " + l)
+    console.log(document.images[i])
+    var div = document.createElement("div");
+    div.style.position = "absolute";
+    div.style.width = w;
+    div.style.height = h;
+    div.style.top = t;
+    div.style.left = l;
+    div.style.background = "red";
+    div.style.zIndex = "999999999";
+
+    document.body.appendChild(div);
+
+}
+
+
+http://stackoverflow.com/questions/2430503/list-of-all-background-images-in-dom

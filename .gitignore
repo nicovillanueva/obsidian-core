@@ -1,0 +1,6 @@
+archives/*
+*.pyc
+*.json
+*.log
+.idea/*
+*.sqlite

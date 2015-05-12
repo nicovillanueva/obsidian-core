@@ -22,7 +22,8 @@ def resolve_path(path=".", filename="screenshot.png", driver=None):
     path = resolve_variable_names(path, dname, currurl)
     filename = resolve_variable_names(filename, dname, currurl)
 
-    extension = filename[filename.index("."):]
+    #extension = filename[filename.index("."):]
+    extension = ".%s" % filename.rsplit(".")[-1:][0]
     filename = filename.replace(extension, "")
 
     # Ensure a OS dependant separator at the end of the path
@@ -77,14 +78,14 @@ def get_duplicates_amount(path, filename, extension):
 def get_max_duplicate(path, filename, extension):
     # dupes_filenames = []
     nums = []
-    # TODO: If the filename has a "_" in the name, it fails when there's a dupe already
     dupes = glob.glob(path + filename + '_*' + extension)
     for d in dupes:
+        nums.append(int(d.rsplit(".")[-2:][0][-1]))  # Extract the last character of the filename (duplication number)
     #    fname = d[d.rfind(os.sep)+1:]
     #    dupes_filenames.append(fname)
         # Here be dragons:
         # If it happens to fail, uncomment the rest and live a happy life
-        nums.append(int(str(d[d.rfind(os.sep)+1:])[str(d[d.rfind(os.sep)+1:]).index("_")+1:str(d[d.rfind(os.sep)+1:]).rfind(".")]))
+        #nums.append(int(str(d[d.rfind(os.sep)+1:])[str(d[d.rfind(os.sep)+1:]).index("_")+1:str(d[d.rfind(os.sep)+1:]).rfind(".")]))
     #for f in dupes_filenames:
     #    fname_id = int(f[f.index("_")+1:f.rfind(".")])
     #    nums.append(fname_id)

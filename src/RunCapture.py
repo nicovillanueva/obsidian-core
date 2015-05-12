@@ -5,7 +5,7 @@ from src.navigation.BrowserArray import BrowserArray
 from src.database.Screenshots_DB import Screenshots_DB
 from CustomUtils import json_parse
 
-logger = logging.getLogger('obs.Capture')
+logger = logging.getLogger('RunCapture')
 
 
 def run(testparams, config):
@@ -69,14 +69,14 @@ def _main(testdata, cfgdata):
 
     start_time = datetime.datetime.fromtimestamp(time.time())
 
-    barr = _build_browsers_array(testdata.get("browsers"), cfgdata.get("binaries"))
+    barr = _build_browsers_array(testdata.get("browsers"), cfgdata.get("binaries"), cfgdata.get("timeouts"))
 
     for each in testdata.get("urls"):
         if each[0] == "#": continue  # Accept comments in URL list.
 
         # Load page
         logger.info("Capturing %s" % each)
-        barr.get(each, testdata.get("cookies"))
+        ignored_browsers = barr.get(each, testdata.get("cookies"))
 
         # Default to fullscreen if there are no window_sizes defined
         if "window_sizes" not in testdata or len(testdata.get("window_sizes")) <= 0:
@@ -91,8 +91,8 @@ def _main(testdata, cfgdata):
                 barr.set_window_size(wid, hei)
             s_path = testdata.get("screenshots").get("path")
             s_fname = testdata.get("screenshots").get("filename")
-            screen = barr.save_screenshot(s_path, s_fname)
-            sshots_entities.append(screen)  # sshots_entities => list of lists (each browser) of sshots
+            screens = barr.save_screenshot(s_path, s_fname, ignored_browsers)
+            sshots_entities.append(screens)  # sshots_entities => list of lists (each browser) of sshots
 
         # ---------
 
@@ -116,11 +116,11 @@ def _main(testdata, cfgdata):
     logger.debug("Final results: " + str(results))
     return results
 
-def _build_browsers_array(requestedbrowsers, binaries=None):
+def _build_browsers_array(requestedbrowsers, binaries=None, timeouts=None):
     browsers = []
     targetbrowsers = [br for br in requestedbrowsers if requestedbrowsers[br] == True]
     for br in targetbrowsers:
-        spawned_browser = bd.get_browser(br, binaries)
+        spawned_browser = bd.get_browser(br, binaries, timeouts)
         if spawned_browser != -1:
             logger.debug("Spawned browser: " + spawned_browser.name)
             browsers.append(spawned_browser)

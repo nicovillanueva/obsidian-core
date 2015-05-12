@@ -23,18 +23,21 @@ def set_up_logging(logfile='obsidian.log'):
     except OSError:
         open(logfile, 'w+')
 
-    # set up logging to file
+    # Only let Selenium log Warnings and up
+    logging.getLogger("selenium.webdriver.remote.remote_connection").setLevel(logging.WARNING)
+
+    # Set up logging to file
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s | %(name)-15s | [%(levelname)-8s] | %(message)s',
                         datefmt='%d-%m %H:%M',
                         filename=logfile,
                         filemode='w')
-    # define a Handler which writes INFO messages or higher to the sys.stderr
+    # Define a Handler which writes INFO messages or higher to the sys.stderr
     console = logging.StreamHandler()
     console.setLevel(logging.INFO)
-    # set a format which is simpler for console use
+    # Set a format which is simpler for console use
     formatter = logging.Formatter('[%(levelname)-8s] %(name)-15s: %(message)s')
-    # tell the handler to use this format
+    # Tell the handler to use this format
     console.setFormatter(formatter)
-    # add the handler to the root logger
+    # Add the handler to the root logger
     logging.getLogger('').addHandler(console)

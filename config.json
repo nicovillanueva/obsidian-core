@@ -1,26 +1,27 @@
 {
     "database_path": "./obsidian-db.sqlite",
     "check_database_schema": false,
+    "timeouts": 30,
     "binaries": {
-        "firefox": "/path/to/firefox",
-        "chromedriver": "/path/to/chromedriver",
+        "firefox": "/usr/bin/firefox",
+        "chromedriver": "/home/nico/bin/chromedriver",
         "iexplore": false,
         "phantomjs": false
     },
 
+    "debug": true,
 
 
     "------": "---------",
 
 
     "smtp": {
-        "host": "some.mailserver.com",
+        "host": "mail.despegar.com",
         "port": null,
         "user": "",
         "pass": "",
         "tls": false,
         "ehlo": false
-    },
+    }
 
-    "debug": false
 }

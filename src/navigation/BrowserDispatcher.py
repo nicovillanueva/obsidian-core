@@ -2,18 +2,16 @@ from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import sys, logging
 
-# ----- Default values -----
-
-logger = logging.getLogger("obs.brDispatcher")
+logger = logging.getLogger("brDispatcher")
 binaries = {"firefox": None, "chromedriver": None, "phantomjs": None, "iexplore": None}  # Overriden with config.json
 drivers = []  # Module attribute. Keeps track of all opened browsers.
-
-# --------------------
-# ----- Browsers -----
+all_timeouts = 30
 
 
-def get_browser(name, binaries_cfg=None):
+def get_browser(name, binaries_cfg=None, timeouts=30):
     global binaries
+    global all_timeouts
+    all_timeouts = timeouts
     binaries = binaries_cfg
     logger.debug("Binaries used: ")
     logger.debug(binaries)
@@ -60,9 +58,6 @@ def get_phantomjs():
     _prepareDriver(d)
     return d
 
-# ------------------------
-# ----- Release all! -----
-
 
 def get_all():
     browsers = [get_firefox(), get_chrome(), get_internet_explorer(), get_phantomjs()]
@@ -79,11 +74,11 @@ def kill_all(_logger=None, reason=None):
         _logger(reason)
     [each.quit() for each in drivers]
 
-# --------------------------------------------
-# ----- Misc preparations applied to all -----
-
 
 def _prepareDriver(drv):
+    global timeouts
     drv.set_window_position(0, 0)
+    drv.set_page_load_timeout(all_timeouts)
+    drv.set_script_timeout(all_timeouts)
     drivers.append(drv)
     pass

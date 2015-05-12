@@ -20,6 +20,7 @@ To add more comparing methods:
             { "result": "error", "reason": <reason of failure> }  # it may have more keys, such as "data", for example
 """
 
+# TODO: hash_comparison
 
 def pixels_difference(img_a, img_b):
     """
